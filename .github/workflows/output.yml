@@ -1,0 +1,14 @@
+name: Output information
+# manually trigger it
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      # output mata info passed into jobs and steps
+      # meta info is named context
+      # gh actions creates context data with info about event trigger, runner...
+      # it can be accessed in these steps
+      - name: Output Github context object
+        # this syntax is an expression
+        run: echo "${{ toJSON(github) }}"
