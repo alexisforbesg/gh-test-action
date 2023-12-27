@@ -23,6 +23,7 @@ jobs:
         run: npm run lint
   #job 2
   test:
+    needs: lint
     # with ubuntu-latest machine
     # nodejs v16 is already installed
     # but we want v18
