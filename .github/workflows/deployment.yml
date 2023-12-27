@@ -6,6 +6,22 @@ on: [push, workflow_dispatch]
 # jobs will run in parallel
 jobs:
   #job 1
+  lint:
+    # with ubuntu-latest machine
+    # nodejs v16 is already installed
+    # but we want v18
+    runs-on: ubuntu-latest
+    steps:
+      # download code
+      - name: Get code from repository
+        uses: actions/checkout@v2
+      # install dependencies
+      - name: Install dependencies
+        run: npm ci
+      # run linter
+      - name: Run linter
+        run: npm run lint
+  #job 2
   test:
     # with ubuntu-latest machine
     # nodejs v16 is already installed
@@ -20,15 +36,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      # install NodeJs
+      # install dependencies
       - name: Install dependencies
         # or npm install
         # ci makes sure to use dependency versions locked in package.json file
         run: npm ci
       # run tests
       - name: Run test
-        run: npm test
-  #job 2
+        run: npm run test
+  #job 3
   deploy:
     # point to other job to run sequentially if something else finishes successfully
     needs: test
