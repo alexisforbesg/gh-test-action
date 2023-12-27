@@ -1,5 +1,8 @@
 name: Deploy Project
-on: push
+# trigger event when pushing
+# on: push
+# on: [push, workflow_dispatch] allows trigger
+on: [push, workflow_dispatch]
 # jobs will run in parallel
 jobs:
   #job 1
