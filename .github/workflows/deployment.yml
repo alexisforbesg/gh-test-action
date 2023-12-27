@@ -25,8 +25,10 @@ jobs:
       # run tests
       - name: Run test
         run: npm test
-  #job 1
+  #job 2
   deploy:
+    # point to other job to run sequentially if something else finishes successfully
+    needs: test
     # runner machine
     runs-on: ubuntu-latest
     steps:
